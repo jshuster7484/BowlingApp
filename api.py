@@ -9,6 +9,11 @@ games_schema = GameSchema(many=True)
 player_schema = PlayerSchema()
 
 
+@app.route('/', methods=['GET'])
+def home():
+    return jsonify({'message': 'BowlingApp is running.'})
+
+
 @app.route('/games', methods=['GET'])
 def get_all_games():
     game_list = games.values()
@@ -16,12 +21,12 @@ def get_all_games():
     return jsonify({'games': result.data})
 
 
-@app.route("/games/<int:game_id>")
+@app.route('/games/<int:game_id>')
 def get_game(game_id):
     try:
         game = games[game_id]
     except KeyError:
-        return jsonify({"message": "Game could not be found."}), 400
+        return jsonify({'message': 'Game could not be found.'}), 400
 
     game_result = game_schema.dump(game)
     return jsonify({'game': game_result.data})
@@ -40,14 +45,14 @@ def create_game():
         players = json_data['players']
 
         if game_id in games:
-            return jsonify({"message": "Game with game id already exists."}, 400)
+            return jsonify({'message': 'Game with game id already exists.'}, 400)
 
         game = Game(game_id, players)
         games[game_id] = game
         result = game_schema.dump(game)
-        return jsonify({"message": "Created new game.", "game": result})
+        return jsonify({'message': 'Created new game.', 'game': result})
     else:
-        return jsonify({"message": "A game id and a list of player names must be provided to create a game."}), 400
+        return jsonify({'message': 'A game id and a list of player names must be provided to create a game.'}), 400
 
 
 @app.route('/games/<int:game_id>', methods=['PUT'])
@@ -60,7 +65,7 @@ def update_game(game_id):
     try:
         game = games[game_id]
     except KeyError:
-        return jsonify({"message": "Game could not be found."}), 400
+        return jsonify({'message': 'Game could not be found.'}), 400
 
     if 'pins' in json_data and 'player' in json_data:
         player_name = json_data['player']
@@ -73,11 +78,11 @@ def update_game(game_id):
             player = game.players[player_index]
             player.roll(pins)
             result = player_schema.dump(player)
-            return jsonify({"message": "Player rolled.", "player": result})
+            return jsonify({'message': 'Player rolled.', 'player': result})
         else:
             return jsonify({'message': 'Player name could not be found in game.'}), 400
     else:
-        return jsonify({"message": "A player name and the pins rolled must be provided."}), 400
+        return jsonify({'message': 'A player name and the pins rolled must be provided.'}), 400
 
 
 @app.route('/games/<int:game_id>', methods=['DELETE'])
@@ -85,7 +90,7 @@ def delete_game(game_id):
     try:
         del games[game_id]
     except KeyError:
-        return jsonify({"message": "Game could not be found."}), 400
+        return jsonify({'message': 'Game could not be found.'}), 400
 
     return jsonify({'message': 'Game deleted.'}), 200
 
@@ -93,7 +98,7 @@ def delete_game(game_id):
 @app.route('/games', methods=['DELETE'])
 def delete_all_games():
     games.clear()
-    return jsonify({"message": "All games deleted."}), 200
+    return jsonify({'message': 'All games deleted.'}), 200
 
 
 if __name__ == '__main__':
