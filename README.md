@@ -15,7 +15,7 @@ python -m unittest discover
 ```
 
 ## Deployment
-Run the following commands from the BowlingApp directory:
+Run the following commands from the BowlingApp directory:  
 Mac:
 ```
 export FLASK_APP=api.py
