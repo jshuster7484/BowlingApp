@@ -1,5 +1,5 @@
 import unittest
-from models import Game, Player
+from models import Game
 
 
 class TestBowlingApp(unittest.TestCase):
@@ -56,90 +56,84 @@ class TestBowlingApp(unittest.TestCase):
         self.assertEqual(self.game.players[0].score, 0)
         self.game.players[0].roll(0)
         self.assertEqual(self.game.players[0].score, 0)
-        print(self.game.players[0].frames)
-        # Twenty first gutter ball should return error
-        #self.game.players[0].roll(0)
-        #self.assertEqual(self.game.players[0].score, 0)
 
     def test_perfect_game(self):
         # First Frame
         self.game.players[0].roll(10)
-        self.assertEqual(10, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 10)
         # Second Frame
         self.game.players[0].roll(10)
-        self.assertEqual(30, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 30)
         # Third Frame
         self.game.players[0].roll(10)
-        self.assertEqual(60, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 60)
         # Fourth Frame
         self.game.players[0].roll(10)
-        self.assertEqual(90, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 90)
         # Fifth Frame
         self.game.players[0].roll(10)
-        self.assertEqual(120, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 120)
         # Sixth Frame
         self.game.players[0].roll(10)
-        self.assertEqual(150, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 150)
         # Seventh Frame
         self.game.players[0].roll(10)
-        self.assertEqual(180, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 180)
         # Eighth Frame
         self.game.players[0].roll(10)
-        self.assertEqual(210, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 210)
         # Ninth Frame
         self.game.players[0].roll(10)
-        self.assertEqual(240, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 240)
         # Tenth Frame
         self.game.players[0].roll(10)
         self.game.players[0].roll(10)
         self.game.players[0].roll(10)
-        self.assertEqual(300, self.game.players[0].score)
-        print(self.game.players[0].frames)
-
+        self.assertEqual(self.game.players[0].score, 300)
 
     def test_all_spares_game(self):
         # First Frame
         self.game.players[0].roll(0)
         self.game.players[0].roll(10)
-        self.assertEqual(10, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 10)
         # Second Frame
         self.game.players[0].roll(1)
         self.game.players[0].roll(9)
-        self.assertEqual(21, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 21)
         # Third Frame
         self.game.players[0].roll(2)
         self.game.players[0].roll(8)
-        self.assertEqual(33, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 33)
         # Fourth Frame
         self.game.players[0].roll(3)
         self.game.players[0].roll(7)
-        self.assertEqual(46, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 46)
         # Fifth Frame
         self.game.players[0].roll(4)
         self.game.players[0].roll(6)
-        self.assertEqual(60, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 60)
         # Sixth Frame
         self.game.players[0].roll(5)
         self.game.players[0].roll(5)
-        self.assertEqual(75, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 75)
         # Seventh Frame
         self.game.players[0].roll(6)
         self.game.players[0].roll(4)
-        self.assertEqual(91, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 91)
         # Eighth Frame
         self.game.players[0].roll(7)
         self.game.players[0].roll(3)
-        self.assertEqual(108, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 108)
         # Ninth Frame
         self.game.players[0].roll(8)
         self.game.players[0].roll(2)
-        self.assertEqual(126, self.game.players[0].score)
+        self.assertEqual(self.game.players[0].score, 126)
         # Tenth Frame
         self.game.players[0].roll(9)
         self.game.players[0].roll(1)
         self.game.players[0].roll(10)
-        self.assertEqual(155, self.game.players[0].score)
-        print(self.game.players[0].frames)
+        self.assertEqual(self.game.players[0].score, 155)
 
-    def test_multiplayer_game(self):
-        pass  # TODO, ran out of time
+    # TODO: Ran out of time
+    # def test_multiplayer_game(self):
+    #     pass
