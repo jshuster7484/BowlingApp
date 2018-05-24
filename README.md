@@ -2,20 +2,20 @@
 An API to keep score of multiple bowling games.
 
 ## Installing
-Install python 3.6
-Install the required packages
+Install python 3.6  
+Install the required packages:
 ```
 pip3 install -r requirements.txt
 ```
 
 ## Running Tests
-Run the following command from the BowlingApp directory
+Run the following command from the BowlingApp directory:
 ```
 python -m unittest discover
 ```
 
 ## Deployment
-Run the following commands from the BowlingApp directory
+Run the following commands from the BowlingApp directory:
 Mac:
 ```
 export FLASK_APP=api.py
@@ -29,8 +29,8 @@ python -m flask run
 ```
 
 ## Operation
-Navigate to http://127.0.0.1:5000 to verify that BowlingApp is running.
-Use an http client tool like curl or postman to access the following endpoints.
+Navigate to http://127.0.0.1:5000 to verify that BowlingApp is running.  
+Use a tool like curl or postman to make the following requests:
 
 * __GET /games__ returns all current games.
 * __POST /games__ will create a game. It requires the following json:
